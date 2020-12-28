@@ -14,4 +14,11 @@ after_success:
   - docker build -t teevee757/multi-nginx ./nginx
   - docker build -t teevee757/multi-server ./server
   - docker build -t teevee757/multi-worker ./worker
+  # Login to teh docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push teevee757/multi-client
+  - docker push teevee757/multi-nginx
+  - docker push teevee757/multi-server
+  - docker push teevee757/multi-worker
 
